@@ -520,6 +520,8 @@ progress::-moz-progress-bar {
   align-items: center;
 }
 
+
+
 .contact-card > svg {
   width: 2rem;
   height: 2rem;
@@ -655,7 +657,7 @@ progress::-moz-progress-bar {
   .contact-cards {
     display: grid;
     grid-template-columns: repeat(2, 48%);
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 
   .portfolio > .container {
@@ -698,7 +700,7 @@ progress::-moz-progress-bar {
   }
 
   .contact-cards {
-    grid-template-columns: repeat(4, 24%);
+    grid-template-columns: repeat(3, 24%);
   }
 
   .footer {
