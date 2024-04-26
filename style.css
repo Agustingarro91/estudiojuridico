@@ -564,6 +564,11 @@ progress::-moz-progress-bar {
   text-decoration: none;
 }
 
+.logo a img {
+  width: 40px;
+  border-radius: 50%;
+}
+
 .portfolio-card {
   position: relative;
   width: 100%;
