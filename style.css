@@ -464,7 +464,7 @@ progress::-moz-progress-bar {
   border-bottom: thin solid var(--first-color);
   margin: 2rem auto;
   padding: 0.5rem 1rem;
-  width: 250px;
+  width: 350px;
   text-align: center;
   color: var(--title-color);
 }
