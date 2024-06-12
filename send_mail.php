@@ -7,6 +7,13 @@ if (isset($_POST)) {
   $subject = "Nueva consulta";/* $_POST["subject"] */
   $comments = $_POST["comments"];
 
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $captcha = $_POST['g-recaptcha-response'];
+  $secretKey = ""
+
+  $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha&remoteip=$ip");
+
+  
   $domain = $_SERVER["HTTP_HOST"];
   $to = "agusdiazgarro@gmail.com";
   $subject_mail = "Contacto desde el formulario del sitio $domain.";
