@@ -119,6 +119,10 @@ p {
   background-color: var(--carousel-bg-color);
 }
 
+.slide{
+  width: 50%;
+}
+
 
 
 .carousel .slides {

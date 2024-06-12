@@ -27,18 +27,16 @@
   $form.addEventListener("submit", (e) => {
     e.preventDefault();
     $loader.classList.remove("none");
-    fetch("https://formsubmit.co/ajax/your@email.com", {
+    fetch("https://formsubmit.co/ajax/agusdiazgarro@gmail.com", {
       method: "POST",
       body: new FormData(e.target),
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
       .then((json) => {
-        console.log(json);
         location.hash = "#gracias";
         $form.reset();
       })
       .catch((err) => {
-        console.log(err);
         let message =
           err.statusText || "Ocurrió un error al enviar, intenta nuevamente";
         $response.querySelector(
@@ -49,7 +47,7 @@
         $loader.classList.add("none");
         setTimeout(() => {
           location.hash = "#close";
-        }, 3000);
+        }, 5000);
       });
   });
 })(document);
