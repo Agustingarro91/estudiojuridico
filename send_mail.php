@@ -21,7 +21,7 @@ if (isset($_POST)) {
       <li>Comentarios: $comments</li>
     </ul>
   ";
-  $headers = "MIME-Version: 1.0\r\n" . "Content-Type: text/html; charset=utf-8\r\n" . "From: Envío Automático No Responder <no-reply@$domain>";
+  $headers = "MIME-Version: 1.0\r\n" . "Content-Type: text/html; charset=utf-8\r\n" . "From: Nueva consulta <no-reply@$domain>";
 
   $send_mail = mail($to, $subject_mail, $message, $headers);
 
