@@ -4,7 +4,7 @@ if (isset($_POST)) {
 
   $name = $_POST["name"];
   $email = $_POST["email"];
-  $subject = $_POST["subject"];
+  $subject = "Nueva consulta";/* $_POST["subject"] */
   $comments = $_POST["comments"];
 
   $domain = $_SERVER["HTTP_HOST"];
