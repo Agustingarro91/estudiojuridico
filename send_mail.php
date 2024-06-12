@@ -9,7 +9,7 @@ if (isset($_POST)) {
 
   $ip = $_SERVER['REMOTE_ADDR'];
   $captcha = $_POST['g-recaptcha-response'];
-  $secretKey = "6LehbfcpAAAAADpqbo14NXqTTR_4CWM5FZJechkM"
+  $secretKey = "6LehbfcpAAAAADpqbo14NXqTTR_4CWM5FZJechkM";
 
   $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha&remoteip=$ip");
 
