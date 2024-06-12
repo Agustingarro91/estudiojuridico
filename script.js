@@ -27,9 +27,10 @@
   $form.addEventListener("submit", (e) => {
     e.preventDefault();
     $loader.classList.remove("none");
-    fetch("https://formsubmit.co/ajax/agusdiazgarro@gmail.com", {
+    fetch("https://agustindiazgarro.top/antunez2/send_mail.php", {
       method: "POST",
       body: new FormData(e.target),
+      mode:"cors"
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
       .then((json) => {
