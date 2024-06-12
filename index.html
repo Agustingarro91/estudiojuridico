@@ -22,16 +22,10 @@
     <meta property="og:description" name="twitter:description" content="" />
     <meta property="og:image" name="twitter:image" content="" />
     <meta property="og:url" name="twitter:url" content="" />
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcP4fUpAAAAAHtgMeeA9-2NxLT8KjqOSsx4s8K1"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-    <script>
-      function onClick(e) {
-        e.preventDefault();
-        grecaptcha.enterprise.ready(async () => {
-          const token = await grecaptcha.enterprise.execute('6LcP4fUpAAAAAHtgMeeA9-2NxLT8KjqOSsx4s8K1', {action: 'LOGIN'});
-        });
-      }
-    </script>
+
+
 
   </head>
 
@@ -642,6 +636,7 @@
           <div class="contact-form-loader text-center none">
             <img src=" assets/loader.svg" alt="Enviando..." />
           </div>
+          <div class="g-recaptcha" data-sitekey="6LehbfcpAAAAAHgnuNCJbHe-NRbXN3xnhRMCAKzK"></div>
           <input class="btn" type="submit" value="ENVIAR MENSAJE" />
         </form>
         <article id="gracias" class="modal">
