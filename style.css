@@ -175,6 +175,8 @@ p {
 /* ********** Contact Form ********** */
 
 .contact-form {
+  --form--ok-color: #4caf50;
+  --form--error-color: #f44336;
   margin: 2rem auto;
   padding: 1rem;
   max-width: 800px;
@@ -196,13 +198,13 @@ p {
 .contact-form input {
   border: 0;
   padding-left: 0;
-  border-bottom: thin solid var(--gray-dark-color);
 }
 
 .contact-form textarea {
-  border: thin solid var(--gray-dark-color);
+  border: 0;
   resize: none;
 }
+
 
 .contact-form input[type="submit"] {
   margin-top: 0;
@@ -231,6 +233,39 @@ p {
   fill: var(--first-color);
 }
 
+.contact-form [required]:valid{
+  border-bottom: thin solid var(--form--ok-color);
+}
+
+.contact-form [required]:invalid{
+  border-bottom: thin solid var(--form--error-color);
+}
+
+.contact-form-error{
+  margin-top: -1rem;
+  font-size: 80%;
+  background-color: var(--form--error-color);
+  color: #fff;
+  transition: all 800ms ease;
+}
+
+.contact-form-error.is-active{
+  display: block;
+  animation: show-message 1s 1 normal 0s ease-out both;
+}
+
+@keyframes show-message{
+  0%{
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  100%{
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
 .modal#gracias:target {
   opacity: 1;
   pointer-events: auto;
@@ -249,12 +284,18 @@ p {
   }
 
   .contact-form textarea,
+  .contact-form .g-recaptcha,
   .contact-form-loader {
     grid-column: span 2;
   }
 
+  .contact-form .g-recaptcha,
   .contact-form input[type="submit"] {
-    margin-left: 0;
+    margin-left:0;
+  }
+
+  .contact-form .g-recaptcha{
+    padding-left: 0;
   }
 }
 
