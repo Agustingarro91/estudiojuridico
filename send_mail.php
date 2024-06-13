@@ -14,11 +14,11 @@ if (isset($_POST)) {
   $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha&remoteip=$ip");
 
 
-
+ 
   
   $domain = $_SERVER["HTTP_HOST"];
   $to = "agusdiazgarro@gmail.com";
-  $subject_mail = "Contacto desde el formulario del sitio $domain.";
+  $subject_mail = "Nueva consulta por parte de $name.";
   $message = "
     <p>
       Datos enviados desde el formulario del sitio <b>$domain</b>
@@ -32,7 +32,9 @@ if (isset($_POST)) {
   ";
   $headers = "MIME-Version: 1.0\r\n" . "Content-Type: text/html; charset=utf-8\r\n" . "From: Nueva consulta <no-reply@$domain>";
 
-  $send_mail = mail($to, $subject_mail, $message, $headers);
+ if($response){
+   $send_mail = mail($to, $subject_mail, $message, $headers);
+  }
 
   if($send_mail) {
     $res = [
