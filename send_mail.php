@@ -13,12 +13,25 @@ if (isset($_POST)) {
 
   $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha&remoteip=$ip");
 
+  $atributos = json_decode($response, TRUE);  
 
- 
+  $error = "";
+
+  if(!$name || $email || $comments){
+    $error = "Hay campos vacios no se puede enviar el mensaje!"
+  }
+
+  if(!$atributos['succes']){
+    $error = "Captcha no marcado"
+  }
+
+
+
+
   
   $domain = $_SERVER["HTTP_HOST"];
   $to = "agusdiazgarro@gmail.com";
-  $subject_mail = "Nueva consulta por parte de $name.";
+  $subject_mail = "Nueva consulta de $name.";
   $message = "
     <p>
       Datos enviados desde el formulario del sitio <b>$domain</b>
@@ -32,19 +45,18 @@ if (isset($_POST)) {
   ";
   $headers = "MIME-Version: 1.0\r\n" . "Content-Type: text/html; charset=utf-8\r\n" . "From: Nueva consulta <no-reply@$domain>";
 
- if($response){
-   $send_mail = mail($to, $subject_mail, $message, $headers);
-  }
 
-  if($send_mail) {
+  $send_mail = mail($to, $subject_mail, $message, $headers);
+
+  if($send_mail && !$error) {
     $res = [
       "err" => false,
-      "message" => "Tus datos han sido enviados"
+      "message" => "Tus datos han sido enviados, pronto te responderemos"
     ];
   } else {
     $res = [
       "err" => true,
-      "message" => "Error al enviar tus datos. Intenta nuevamente."
+      "message" => $error
     ];
   }
 
