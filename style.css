@@ -191,6 +191,7 @@ p {
 
 .contact-form input,
 .contact-form textarea {
+  width: 100%;
   font-size: 0.85rem;
   font-family: var(--font);
 }
@@ -242,11 +243,12 @@ p {
 }
 
 .contact-form-error{
-  margin-top: -1rem;
+  padding: 0.5rem;
   font-size: 80%;
   background-color: var(--form--error-color);
   color: #fff;
   transition: all 800ms ease;
+  text-align: center;
 }
 
 .contact-form-error.is-active{
@@ -283,7 +285,7 @@ p {
     font-size: 1rem;
   }
 
-  .contact-form textarea,
+  .contact-form div:nth-child(3),
   .contact-form .g-recaptcha,
   .contact-form-loader {
     grid-column: span 2;
@@ -777,6 +779,11 @@ progress::-moz-progress-bar {
     grid-template-columns: repeat(3, 30%);
     justify-content: space-between;
     align-content: center;
+  }
+
+  .about article:last-child{
+    grid-column: span 3;
+    text-align: center;
   }
 
   .contact-cards {
