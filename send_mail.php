@@ -1,6 +1,5 @@
 <?php
-if (isset($_POST)) {
-  error_reporting(0);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST)) {
 
   $name = $_POST["name"];
   $email = $_POST["email"];
@@ -17,12 +16,12 @@ if (isset($_POST)) {
 
   $error = "";
 
-  if(!$name || $email || $comments){
-    $error = "Hay campos vacios no se puede enviar el mensaje!"
+  if(!$name || !$email || !$comments){
+    $error = "Hay campos vacios no se puede enviar el mensaje!";
   }
-
-  if(!$atributos['succes']){
-    $error = "Captcha no marcado"
+  
+  if(!$atributos['success']){
+    $error = $atributos['error-codes'];
   }
 
 
@@ -46,16 +45,18 @@ if (isset($_POST)) {
   $headers = "MIME-Version: 1.0\r\n" . "Content-Type: text/html; charset=utf-8\r\n" . "From: Nueva consulta <no-reply@$domain>";
 
 
-  $send_mail = mail($to, $subject_mail, $message, $headers);
+  if(!$error){
+    $send_mail = mail($to, $subject_mail, $message, $headers);
+  }
 
-  if($send_mail && !$error) {
+  if($send_mail) {
     $res = [
-      "err" => false,
+      "err" => False,
       "message" => "Tus datos han sido enviados, pronto te responderemos"
     ];
   } else {
     $res = [
-      "err" => true,
+      "err" => True,
       "message" => $error
     ];
   }
@@ -65,4 +66,13 @@ if (isset($_POST)) {
   header( 'Content-type: application/json' );
   echo json_encode($res);
   exit;
+} else {
+    $res = [
+      "err" => true,
+      "message" => 'Metodo incorrecto'
+    ];
+    header("Access-Control-Allow-Origin: *");
+    header( 'Content-type: application/json' );
+    echo json_encode($res);
+    exit;
 }
