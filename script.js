@@ -23,11 +23,7 @@
   const $form = d.querySelector(".contact-form"),
     $loader = d.querySelector(".contact-form-loader"),
     $response = d.querySelector(".contact-form-response"),
-    $inputs = d.querySelectorAll(".contact-form [required]"),
-    $captcha = d.querySelectorAll(".g-recaptcha");
-
-    console.log($captcha);
-
+    $inputs = d.querySelectorAll(".contact-form [required]");
 
 
     $inputs.forEach(input => {
@@ -62,28 +58,35 @@
 
   $form.addEventListener("submit", (e) => {
     e.preventDefault();
+    console.log(e.target);
     $loader.classList.remove("none");
     fetch("https://agustindiazgarro.top/antunez2/send_mail.php", {
       method: "POST",
       body: new FormData(e.target),
       mode:"cors"
     })
-      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .then((res) => (res.ok ?  res.json() : Promise.reject(res)))
       .then((json) => {
+        console.log(json);
+        
+        if(json.err){ throw Error(json.message);}
+
+        $response.querySelector(
+          "h3"
+        ).innerHTML = `${json.message}`;
         location.hash = "#gracias";
         $form.reset();
       })
       .catch((err) => {
-        let message =
-          err.statusText || "Ocurrió un error al enviar, intenta nuevamente";
-        $response.querySelector(
-          "h3"
-        ).innerHTML = `Error ${err.status}: ${message}`;
+        console.log(err);
+        let message = err.statusText || "Ocurrió un error al enviar, intenta nuevamente";
+        $response.innerHTML =  `<p>${err ? err : message}</p>`;
+        location.hash = "#gracias";
       })
       .finally(() => {
         $loader.classList.add("none");
         setTimeout(() => {
-          location.hash = "#close";
+          location.hash = "close";
         }, 5000);
       });
   });
