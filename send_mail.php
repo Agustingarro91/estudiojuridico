@@ -9,10 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST)) {
   $ip = $_SERVER['REMOTE_ADDR'];
   $captcha = $_POST['g-recaptcha-response'];
   $secretKey = "";
-
+/* 
   $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha&remoteip=$ip");
 
-  $atributos = json_decode($response, TRUE);  
+  $atributos = json_decode($response, TRUE);   */
 
   $error = "";
 
@@ -20,9 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST)) {
     $error = "Hay campos vacios no se puede enviar el mensaje!";
   }
   
-  if(!$atributos['success']){
+ /*  if(!$atributos['success']){
     $error = $atributos['error-codes'];
-  }
+  } */
 
 
 

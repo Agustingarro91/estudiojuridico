@@ -58,7 +58,6 @@
 
   $form.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(e.target);
     $loader.classList.remove("none");
     fetch("https://agustindiazgarro.top/antunez2/send_mail.php", {
       method: "POST",
@@ -69,7 +68,7 @@
       .then((json) => {
         console.log(json);
         
-        if(json.err){ throw Error(json.message);}
+        /* if(json.err){ throw Error(json.message);} */
 
         $response.querySelector(
           "h3"
