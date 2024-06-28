@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST)) {
   if($send_mail) {
     $res = [
       "err" => False,
-      "message" => "Tus datos han sido enviados, pronto te responderemos"
+      "message" => "Tu mensaje ha sido enviado, pronto te responderemos"
     ];
   } else {
     $res = [

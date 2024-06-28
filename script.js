@@ -77,7 +77,8 @@
     })
       .then((res) => (res.ok ?  res.json() : Promise.reject(res)))
       .then((json) => {
-        console.log(json);
+
+        if(json.err) throw Error(json.message)
 
         $response.querySelector(
           "h3"
@@ -86,7 +87,6 @@
         $form.reset();
       })
       .catch((err) => {
-        console.log(err);
         let message = err.statusText || "Ocurrió un error al enviar, intenta nuevamente";
         $response.innerHTML =  `<p>${err ? err : message}</p>`;
         location.hash = "#gracias";
@@ -95,7 +95,7 @@
         $loader.classList.add("none");
         setTimeout(() => {
           location.hash = "close";
-        }, 5000);
+        }, 3000);
       });
   });
 })(document);
