@@ -22,7 +22,8 @@
     <meta property="og:description" name="twitter:description" content="Asistencia Jurídica Completa - Más de 35 años defendiendo tus derechos. Con un equipo multidisciplinario, ofrecemos una atención personalizada y soluciones legales eficientes en diversas áreas del derecho." />
     <meta property="og:image" name="twitter:image" content="https://agustindiazgarro.top/antunez2/assets/estudio_juridico.jpeg" />
     <meta property="og:url" name="twitter:url" content="https://agustindiazgarro.top/antunez2/" />
-    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfcugIqAAAAAA-vLcVEWOcSevVc80WxqK2nHcQ4"></script>
+
 
 
 
@@ -595,7 +596,7 @@
             </small>
           </aside>
         </article>
-        <form class="contact-form box-shadow-1">
+        <form id="demo-form" class="contact-form box-shadow-1">
           <div>
             <input
               type="text"
@@ -633,11 +634,10 @@
             <img src=" assets/loader.svg" alt="Enviando..." />
           </div>
 
-          <!-- <div class="g-recaptcha" data-sitekey="6LcDVfgpAAAAADIEtxW0KCFmFgFi5iChY_oDMoKV"></div> -->
-          
-          <input class="btn" type="submit" value="ENVIAR MENSAJE" />
+          <input  type="hidden" name="token" id="token" />
+          <input class="btn g-recaptcha" type="submit" value="ENVIAR MENSAJE" />
         </form>
-        <article id="gracias" class="modal">
+        <article id="gracias" class="modal" >
           <div class="modal-content">
             <article class="contact-form-response">
               <h3>
@@ -671,7 +671,7 @@
           >AgusDG</a
         ></small
       >
-    </footer>
+    </footer>    
     <script src="script.js"></script>
   </body>
 </html>

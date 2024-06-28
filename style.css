@@ -286,19 +286,16 @@ p {
   }
 
   .contact-form div:nth-child(3),
-  .contact-form .g-recaptcha,
   .contact-form-loader {
     grid-column: span 2;
   }
 
-  .contact-form .g-recaptcha,
+  
   .contact-form input[type="submit"] {
     margin-left:0;
   }
 
-  .contact-form .g-recaptcha{
-    padding-left: 0;
-  }
+  
 }
 
 /* ********** HeroImage ********** */

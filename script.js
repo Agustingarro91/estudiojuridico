@@ -19,7 +19,18 @@
 })(document);
 
 /* ********** ContactForm ********** */
+
+
 ((d) => {
+  /* Recaptcha */
+  grecaptcha.ready(function(){
+    grecaptcha.execute("6LfcugIqAAAAAA-vLcVEWOcSevVc80WxqK2nHcQ4", {action: "formulario"})
+    .then(function(token){
+      const itoken = d.getElementById('token');
+      itoken.value = token;
+    })
+  });
+
   const $form = d.querySelector(".contact-form"),
     $loader = d.querySelector(".contact-form-loader"),
     $response = d.querySelector(".contact-form-response"),
@@ -67,8 +78,6 @@
       .then((res) => (res.ok ?  res.json() : Promise.reject(res)))
       .then((json) => {
         console.log(json);
-        
-        /* if(json.err){ throw Error(json.message);} */
 
         $response.querySelector(
           "h3"

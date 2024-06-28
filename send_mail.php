@@ -7,12 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST)) {
   $comments = $_POST["comments"];
 
   $ip = $_SERVER['REMOTE_ADDR'];
-  $captcha = $_POST['g-recaptcha-response'];
+  $captcha = $_POST['token'];
   $secretKey = "";
-/* 
+
   $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha&remoteip=$ip");
 
-  $atributos = json_decode($response, TRUE);   */
+  $atributos = json_decode($response, TRUE);  
 
   $error = "";
 
@@ -20,13 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST)) {
     $error = "Hay campos vacios no se puede enviar el mensaje!";
   }
   
- /*  if(!$atributos['success']){
+  if(!$atributos['success']){    
     $error = $atributos['error-codes'];
-  } */
+  }
+
+  if($atributos['score'] < 0.7){    
+    $error = "Robot";
+  }
 
 
-
-
+  if(!$error){
   
   $domain = $_SERVER["HTTP_HOST"];
   $to = "agusdiazgarro@gmail.com";
@@ -45,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST)) {
   $headers = "MIME-Version: 1.0\r\n" . "Content-Type: text/html; charset=utf-8\r\n" . "From: Nueva consulta <no-reply@$domain>";
 
 
-  if(!$error){
+  
     $send_mail = mail($to, $subject_mail, $message, $headers);
   }
 
@@ -61,18 +64,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST)) {
     ];
   }
 
-  //header("Access-Control-Allow-Origin: https://jonmircha.com");
-  header("Access-Control-Allow-Origin: *");
-  header( 'Content-type: application/json' );
-  echo json_encode($res);
-  exit;
+
 } else {
     $res = [
       "err" => true,
       "message" => 'Metodo incorrecto'
     ];
-    header("Access-Control-Allow-Origin: *");
-    header( 'Content-type: application/json' );
-    echo json_encode($res);
-    exit;
 }
+
+  //header("Access-Control-Allow-Origin: https://jonmircha.com");
+  header("Access-Control-Allow-Origin: *");
+  header( 'Content-type: application/json' );
+  echo json_encode($res);
+  exit;
