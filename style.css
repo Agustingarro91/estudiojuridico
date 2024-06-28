@@ -173,6 +173,17 @@ p {
 }
 
 /* ********** Contact Form ********** */
+/*Mover Recaptcha a la izquierda*/
+.grecaptcha-badge {
+  width: 70px !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  right: -2px !important;
+  bottom: var(--header-height) !important;
+  }
+  .grecaptcha-badge:hover {
+  width: 256px !important;
+  }
 
 .contact-form {
   --form--ok-color: #4caf50;

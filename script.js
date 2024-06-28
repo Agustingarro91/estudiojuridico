@@ -28,6 +28,7 @@
     .then(function(token){
       const itoken = d.getElementById('token');
       itoken.value = token;
+
     })
   });
 
