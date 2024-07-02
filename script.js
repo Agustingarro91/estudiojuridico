@@ -28,7 +28,6 @@
     .then(function(token){
       const itoken = d.getElementById('token');
       itoken.value = token;
-
     })
   });
 
@@ -79,13 +78,18 @@
       .then((res) => (res.ok ?  res.json() : Promise.reject(res)))
       .then((json) => {
 
-        if(json.err) throw Error(json.message)
+        if(json.err){
+          $response.innerHTML =  `<p> Error: ${json.message}</p>`;
+          location.hash = "#gracias";
+        }
+        else{
+          $response.querySelector(
+            "h3"
+          ).innerHTML = `${json.message}`;
+          location.hash = "#gracias";
+          $form.reset();
+        }
 
-        $response.querySelector(
-          "h3"
-        ).innerHTML = `${json.message}`;
-        location.hash = "#gracias";
-        $form.reset();
       })
       .catch((err) => {
         let message = err.statusText || "Ocurrió un error al enviar, intenta nuevamente";
